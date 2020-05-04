@@ -23,6 +23,90 @@ namespace ToDoListProject
         public MainWindow()
         {
             InitializeComponent();
+            DayComboBox.ItemsSource = GenerateDaysToComboBox();
+            MonthComboBox.ItemsSource = GenerateMonthsToComboBox();
+            YearComboBox.ItemsSource = GenerateYearsToComboBox();
+            SelectDefaultItemsInComboBoxes();
         }
+
+
+        private void SearchTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                SearchTextBox.Visibility = Visibility.Collapsed;
+                HintTextBox.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void HintTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            HintTextBox.Visibility = Visibility.Collapsed;
+            SearchTextBox.Visibility = Visibility.Visible;
+            SearchTextBox.Focus();
+        }
+
+
+
+
+
+        // --------------------------- INICJALIZACJA --------------------------------------------------
+        private void SelectDefaultItemsInComboBoxes()
+        {
+
+            DayComboBox.SelectedIndex = DateTime.Now.Day - 1;
+            MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
+            List<string> years = YearComboBox.ItemsSource as List<string>;
+            int index = years.IndexOf(DateTime.Now.Year.ToString());
+            YearComboBox.SelectedIndex = index;
+
+        }
+
+        private List<string> GenerateDaysToComboBox()
+        {
+            List<string> days = new List<string>();
+            for(int i = 1; i < 32; i++)
+            {
+                days.Add(i.ToString());
+            }
+
+            return days;
+        } 
+        private List<string> GenerateMonthsToComboBox()
+        {
+            List<string> months = new List<string>
+            {
+                "Styczeń",
+                "Luty",
+                "Marzec",
+                "Kwiecień",
+                "Maj",
+                "Czerwiec",
+                "Lipiec",
+                "Sierpień",
+                "Wrzesień",
+                "Październik",
+                "Listopad",
+                "Grudzień"
+            };
+
+            return months;
+        }
+
+        private List<string> GenerateYearsToComboBox()
+        {
+            List<string> years = new List<string>();
+            int actualYear = DateTime.Now.Year;
+
+
+            for (int i = actualYear-5; i < actualYear+5; i++)
+            {
+                years.Add(i.ToString());
+            }
+
+            return years;
+        }
+
+       
     }
 }
