@@ -109,10 +109,9 @@
                         </Style>
                     </TextBox.Resources>
                 </TextBox>
-                <ComboBox Grid.Column="1" Margin="2" Background="#efe4b0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
+                <ComboBox x:Name="CategoryComboBox" Grid.Column="1" Margin="2" Background="#efe4b0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
                           FontSize="18" Style="{StaticResource ComboBoxTest2}" SelectedIndex="0">
-                    <ComboBoxItem> Wszystkie</ComboBoxItem>
-                    <ComboBoxItem> Zakupy</ComboBoxItem>
+                    <!--<ComboBoxItem>Wszystkie</ComboBoxItem>-->
                 </ComboBox>
                 
             </Grid>

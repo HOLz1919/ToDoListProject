@@ -23,10 +23,9 @@ namespace ToDoListProject
         public MainWindow()
         {
             InitializeComponent();
-            DayComboBox.ItemsSource = GenerateDaysToComboBox();
-            MonthComboBox.ItemsSource = GenerateMonthsToComboBox();
-            YearComboBox.ItemsSource = GenerateYearsToComboBox();
             SelectDefaultItemsInComboBoxes();
+            CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
+            
         }
 
 
@@ -65,6 +64,9 @@ namespace ToDoListProject
         // --------------------------------------------------------------------------------------------
         private void SelectDefaultItemsInComboBoxes()
         {
+            DayComboBox.ItemsSource = GenerateDaysToComboBox();
+            MonthComboBox.ItemsSource = GenerateMonthsToComboBox();
+            YearComboBox.ItemsSource = GenerateYearsToComboBox();
 
             DayComboBox.SelectedIndex = DateTime.Now.Day - 1;
             MonthComboBox.SelectedIndex = DateTime.Now.Month - 1;
