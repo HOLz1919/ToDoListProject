@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToDoListProject
+namespace ToDoListProject.Models
 {
-    public class SubStep
+    public enum Importance
     {
-        private string name;
-        private bool isFinishedSubStep;
+        Zwykly,
+        Wazny,
+        Pilny,
     }
 }

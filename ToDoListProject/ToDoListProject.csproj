@@ -59,6 +59,7 @@
     <Compile Include="AddTask.xaml.cs">
       <DependentUpon>AddTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Importance.cs" />
     <Compile Include="Models\SubStep.cs" />
     <Compile Include="Models\Step.cs" />
     <Compile Include="Models\Task.cs" />

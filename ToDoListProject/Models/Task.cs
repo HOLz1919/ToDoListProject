@@ -4,21 +4,18 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToDoListProject.Models;
 
 namespace ToDoListProject
 {
     public class Task
     {
         private Category category;
-        private bool isFinished;
+        private bool isFinishedTask;
         private string dateOfCreate;
         private string dateOfEnd;
-        private enum Importance
-        {
-            Zwykly,
-            Wazny,
-            Pilny,
-        }
+        private Importance importance;
+        
         private ObservableCollection<Step> listOfSteps;
 
 
