@@ -10,6 +10,7 @@ namespace ToDoListProject
     public class Step
     {
         private string mainStep;
-        private ObservableCollection<string> halfSteps;
+        private bool isFinished;
+        private ObservableCollection<HalfStep> subSteps;
     }
 }
