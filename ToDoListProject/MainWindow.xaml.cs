@@ -60,8 +60,10 @@ namespace ToDoListProject
 
         private void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            AddTask addTask = new AddTask();
-            addTask.Owner = this;
+            AddTask addTask = new AddTask
+            {
+                Owner = this
+            };
             if (addTask.ShowDialog() == true)
             {
                 //

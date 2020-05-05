@@ -110,9 +110,43 @@
                 <RowDefinition Height="0.8*"></RowDefinition>
                 <RowDefinition Height="0.2*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                
-            </Grid>
+            
+            <StackPanel Grid.Row="0">
+                <ListBox x:Name="StepsListBox" Margin="5" Visibility="Collapsed">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition MinWidth="200"></ColumnDefinition>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <TextBox Text="{Binding Path=MainStep}"></TextBox>
+                                <Button x:Name="AddSubStepButton" Grid.Column="1" Content="+" Margin="10 0 0 0" Click="AddSubStepButton_Click"></Button>
+
+                                <ListBox x:Name="SubStepsListBox" Margin="15 2 0 0" Grid.Row="1" ItemsSource="{Binding SubSteps}" Visibility="Collapsed">
+                                    
+                                </ListBox>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <Button x:Name="AddStepButton" Click="AddStepButton_Click" Width="20" Height="20" FontSize="14" Content="+" 
+                        Margin="5" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" >
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Ellipse Fill="silver"/>
+                                <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+            
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
