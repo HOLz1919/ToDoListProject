@@ -121,14 +121,18 @@
                                     <ColumnDefinition Width="30"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBox Text="{Binding Path=MainStep}"></TextBox>
                                 <Button x:Name="AddSubStepButton" Grid.Column="1" Content="+" Margin="10 0 0 0" Click="AddSubStepButton_Click"></Button>
 
                                 <ListBox x:Name="SubStepsListBox" Margin="15 2 0 0" Grid.Row="1" ItemsSource="{Binding SubSteps}" Visibility="Collapsed">
-                                    
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBox Height="10" Text="{Binding Path=Name}"></TextBox>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
                                 </ListBox>
                             </Grid>
                         </DataTemplate>
