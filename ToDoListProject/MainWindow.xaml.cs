@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace ToDoListProject
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        ObservableCollection<Task> Tasks { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,6 +55,51 @@ namespace ToDoListProject
             HintTextBox.Visibility = Visibility.Collapsed;
             SearchTextBox.Visibility = Visibility.Visible;
             SearchTextBox.Focus();
+        }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddTask addTask = new AddTask();
+            addTask.Owner = this;
+            if (addTask.ShowDialog() == true)
+            {
+                //
+            }
+            else
+            {
+                MessageBox.Show("Coś poszło nie tak");
+            }
+        }
+
+
+        private void DayCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DayCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MonthCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MonthCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void YearCheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void YearCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+
         }
 
 
@@ -121,6 +170,6 @@ namespace ToDoListProject
             return years;
         }
 
-       
+  
     }
 }
