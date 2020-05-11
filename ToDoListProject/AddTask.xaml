@@ -125,7 +125,7 @@
                                     <RowDefinition Height="*"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBox Text="{Binding Path=MainStep}"></TextBox>
-                                <Button x:Name="AddSubStepButton" Grid.Column="1" Content="+" Margin="10 0 0 0" Click="AddSubStepButton_Click"></Button>
+                                <Button x:Name="AddSubStepButton" Grid.Column="1" Content="+" Margin="10 0 0 0" ></Button>
 
                                 <ListBox x:Name="SubStepsListBox" Margin="15 2 0 0" Grid.Row="1" ItemsSource="{Binding SubSteps}" Visibility="Collapsed">
                                     <ListBox.ItemTemplate>
