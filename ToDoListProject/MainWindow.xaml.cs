@@ -28,6 +28,7 @@ namespace ToDoListProject
         public MainWindow()
         {
             InitializeComponent();
+            InitilizeCollection();
             SelectDefaultItemsInComboBoxes();
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
             
@@ -66,7 +67,8 @@ namespace ToDoListProject
             };
             if (addTask.ShowDialog() == true)
             {
-                //
+                Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem,false,(String)addTask.CreationDate.Content,null,Importance.Zwykly,addTask.Steps);
+                Tasks.Add(task);
             }
             else
             {
@@ -172,7 +174,14 @@ namespace ToDoListProject
 
             return years;
         }
+        private void InitilizeCollection()
+        {
+            if(Tasks == null)
+            {
+                Tasks = new ObservableCollection<Task>();
+            }
+        }
 
-  
+
     }
 }

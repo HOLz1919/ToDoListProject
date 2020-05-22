@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using ToDoListProject.ViewModels;
+
 
 namespace ToDoListProject
 {
@@ -30,6 +30,7 @@ namespace ToDoListProject
             StepsListBox.ItemsSource = Steps;
             CreationDate.Content = DateTime.Now.ToString("dd.MM.yyyy");
             DatePicker.BlackoutDates.AddDatesInPast();
+            CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
         private void AddStepButton_Click(object sender, RoutedEventArgs e)
@@ -97,6 +98,16 @@ namespace ToDoListProject
         private void StepsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SubStepsListBox.ItemsSource = Steps[StepsListBox.SelectedIndex].SubSteps;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = true;
         }
 
         //public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
