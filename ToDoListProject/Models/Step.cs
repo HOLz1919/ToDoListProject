@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ToDoListProject
 {
-    public class Step
+    public class Step : INotifyPropertyChanged
     {
         private string mainStep;
         private bool isFinishedStep;
@@ -15,11 +16,11 @@ namespace ToDoListProject
 
         public Step() { }
 
-        public Step(string mainStep, bool isFinishedStep, ObservableCollection<SubStep> subSteps)
+        public Step(string mainStep, bool isFinishedStep)
         {
             this.mainStep = mainStep;
             this.isFinishedStep = isFinishedStep;
-            this.subSteps = subSteps;
+            //this.subSteps = subSteps;
         }
 
         public string MainStep
@@ -30,7 +31,7 @@ namespace ToDoListProject
             }
             set
             {
-                mainStep = value;
+                mainStep = value; OnPropertyChanged("View");
             }
         }
         public bool IsFinishedStep
@@ -52,8 +53,15 @@ namespace ToDoListProject
             }
             set
             {
-                subSteps = value;
+                subSteps = value; OnPropertyChanged("View");
             }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this,
+                new PropertyChangedEventArgs(property));
         }
     }
 }

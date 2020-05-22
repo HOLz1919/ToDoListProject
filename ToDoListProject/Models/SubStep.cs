@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ToDoListProject
 {
-    public class SubStep
+    public class SubStep : INotifyPropertyChanged
     {
         private string name;
         private bool isFinishedSubStep;
@@ -27,7 +28,7 @@ namespace ToDoListProject
             }
             set
             {
-                name = value;
+                name = value; OnPropertyChanged("View");
             }
         }
         public bool IsFinishedSubStep
@@ -42,9 +43,13 @@ namespace ToDoListProject
             }
         }
 
-        public override string ToString()
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged(string property)
         {
-            return name;
+            if (PropertyChanged != null)
+                PropertyChanged(this,
+                new PropertyChangedEventArgs(property));
         }
     }
 }

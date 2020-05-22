@@ -66,6 +66,7 @@
     <Compile Include="ShowAndEditDetails.xaml.cs">
       <DependentUpon>ShowAndEditDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\TaskVM.cs" />
     <Page Include="AddTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
