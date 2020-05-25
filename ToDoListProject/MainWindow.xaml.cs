@@ -31,6 +31,8 @@ namespace ToDoListProject
             InitilizeCollection();
             SelectDefaultItemsInComboBoxes();
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
+            Tasks = new ObservableCollection<Task>();
+            tasksListBox.ItemsSource = Tasks;
             
         }
 

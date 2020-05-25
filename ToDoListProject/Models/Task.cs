@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using ToDoListProject.Models;
@@ -28,6 +29,8 @@ namespace ToDoListProject
             ListOfSteps = listOfSteps;
         }
 
+        public Task() { }
+
         public Category Category
         {
             get
@@ -37,6 +40,7 @@ namespace ToDoListProject
             set
             {
                 category = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -49,6 +53,7 @@ namespace ToDoListProject
             set
             {
                 isFinishedTask = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -61,6 +66,7 @@ namespace ToDoListProject
             set
             {
                 dateOfCreate = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -73,6 +79,7 @@ namespace ToDoListProject
             set
             {
                 dateOfEnd = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -85,6 +92,7 @@ namespace ToDoListProject
             set
             {
                 importance = value;
+                NotifyPropertyChanged();
             }
         }
 
@@ -96,15 +104,14 @@ namespace ToDoListProject
             }
             set
             {
-                listOfSteps = value; 
+                listOfSteps = value;
+                NotifyPropertyChanged();
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string property)
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this,
-                new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 

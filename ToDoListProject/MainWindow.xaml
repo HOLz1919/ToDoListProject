@@ -116,7 +116,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox>
+            <ListBox x:Name="tasksListBox">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -135,7 +135,7 @@
                                     <RowDefinition Height="0.4*"></RowDefinition>
                                     <RowDefinition Height="0.6*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Content="Zakupy" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="20 0" FontSize="22" FontWeight="Bold"></Label>
+                                <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="20 0" FontSize="22" FontWeight="Bold"></Label>
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.3*"></ColumnDefinition>
@@ -148,12 +148,12 @@
                                     </Grid.RowDefinitions>
                                     <Label Grid.Row="0" Grid.Column="1" Content="Utworzono:" HorizontalContentAlignment="Right"></Label>
                                     <Label Grid.Row="1" Grid.Column="1" Content="Termin:" HorizontalContentAlignment="Right"></Label>
-                                    <Label Grid.Row="0" Grid.Column="2" Content="26.05.2019" HorizontalContentAlignment="Center"></Label>
-                                    <Label Grid.Row="1" Grid.Column="2" Content="------------" HorizontalContentAlignment="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="2" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"></Label>
+                                    <Label Grid.Row="1" Grid.Column="2" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"></Label>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
-                                <ListBox Margin="5">
+                                <ListBox Margin="5" ItemsSource="{Binding ListOfSteps}">
 
                                 </ListBox>
                             </Grid>

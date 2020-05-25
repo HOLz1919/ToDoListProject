@@ -35,7 +35,6 @@ namespace ToDoListProject
 
         private void AddStepButton_Click(object sender, RoutedEventArgs e)
         {
-            
             Step step = new Step("", false);
             Steps.Add(step);
 
