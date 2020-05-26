@@ -20,7 +20,13 @@ namespace ToDoListProject
         {
             this.mainStep = mainStep;
             this.isFinishedStep = isFinishedStep;
-            //this.subSteps = subSteps;
+        }
+
+        public Step(string mainStep, bool isFinishedStep, ObservableCollection<SubStep> subSteps)
+        {
+            this.mainStep = mainStep;
+            this.isFinishedStep = isFinishedStep;
+            this.subSteps = subSteps;
         }
 
         public string MainStep
@@ -66,8 +72,17 @@ namespace ToDoListProject
 
         public override string ToString()
         {
-           
-            return mainStep;
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.Append(mainStep).Append("\n");
+            if (SubSteps!=null)
+            {
+                foreach (SubStep item in SubSteps)
+                {
+                    stringBuilder.Append(" - ").Append(item.Name).Append(" \n");
+                }
+            }
+            
+            return stringBuilder.ToString(); 
         }
     }
 }

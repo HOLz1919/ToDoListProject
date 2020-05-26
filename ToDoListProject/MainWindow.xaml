@@ -116,7 +116,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox x:Name="TasksListBox" ListBoxItem.MouseDoubleClick="ShowDetailsInTask">
+            <ListBox x:Name="TasksListBox"  ListBoxItem.MouseDoubleClick="ShowDetailsInTask" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -124,49 +124,51 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="GridItem" Width="120" Height="200" Background="White" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="0.3*"></RowDefinition>
-                                <RowDefinition Height="0.6*"></RowDefinition>
-                                <RowDefinition Height="0.10*"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0">
+                        <Border BorderBrush="Black" BorderThickness="1">
+                            <Grid x:Name="GridItem" Width="120" Height="200" Background="White">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="0.4*"></RowDefinition>
+                                    <RowDefinition Height="0.3*"></RowDefinition>
                                     <RowDefinition Height="0.6*"></RowDefinition>
+                                    <RowDefinition Height="0.10*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="10" FontWeight="Bold"></Label>
-                                <Grid Grid.Row="1">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
+                                <Grid Grid.Row="0">
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="auto"></RowDefinition>
-                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="0.4*"></RowDefinition>
+                                        <RowDefinition Height="0.6*"></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="0" Content="Utworzono:" HorizontalContentAlignment="Right" FontSize="8"></Label>
-                                    <Label Grid.Row="1" Grid.Column="0" Content="Termin:" HorizontalContentAlignment="Right"  FontSize="8"></Label>
-                                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
-                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
+                                    <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="10" FontWeight="Bold"></Label>
+                                    <Grid Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                            <RowDefinition Height="auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Content="Utworzono:" HorizontalContentAlignment="Right" FontSize="8"></Label>
+                                        <Label Grid.Row="1" Grid.Column="0" Content="Termin:" HorizontalContentAlignment="Right"  FontSize="8"></Label>
+                                        <Label Grid.Row="0" Grid.Column="1" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
+                                        <Label Grid.Row="1" Grid.Column="1" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
+                                    </Grid>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <TextBlock IsEnabled="False" Margin="5" Text="{Binding AllSteps}" >
+
+                                    </TextBlock>
+                                </Grid>
+
+                                <Grid Grid.Row="2">
+                                    <Button Margin="5 0" Background="#efe4b0" Content="Zakończ zadanie" FontWeight="Bold">
+                                        <Button.Resources>
+                                            <Style TargetType="Border">
+                                                <Setter Property="CornerRadius" Value="5"/>
+                                            </Style>
+                                        </Button.Resources>
+                                    </Button>
                                 </Grid>
                             </Grid>
-                            <Grid Grid.Row="1">
-                                <ListBox Margin="5" ItemsSource="{Binding ListOfSteps}">
-
-                                </ListBox>
-                            </Grid>
-
-                            <Grid Grid.Row="2">
-                                <Button Margin="5 0" Background="#efe4b0" Content="Zakończ zadanie" FontWeight="Bold">
-                                    <Button.Resources>
-                                        <Style TargetType="Border">
-                                            <Setter Property="CornerRadius" Value="5"/>
-                                        </Style>
-                                    </Button.Resources>
-                                </Button>
-                            </Grid>
-                        </Grid>
+                        </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemContainerStyle>

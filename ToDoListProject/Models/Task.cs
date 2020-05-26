@@ -108,6 +108,28 @@ namespace ToDoListProject
                 NotifyPropertyChanged();
             }
         }
+
+        public string AllSteps
+        {
+            get
+            {
+              return getAllSteps();
+            }
+        }
+
+        private string getAllSteps()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            int i = 1;
+            foreach(Step step in ListOfSteps)
+            {
+                stringBuilder.Append(i + ". ").Append(step);
+                i++;
+            }
+            return stringBuilder.ToString();
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

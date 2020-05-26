@@ -1,11 +1,11 @@
-﻿<Window x:Class="ToDoListProject.ShowAndEditDetails"
+﻿<Window x:Class="ToDoListProject.EditTask"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoListProject"
         mc:Ignorable="d"
-        Title="ShowAndEditDetails" Height="450" Width="300">
+        Title="EditTask" Height="450" Width="300">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.25*"></RowDefinition>
@@ -45,14 +45,25 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <Button Margin="10" Background="#efe4b0" Content="Zakończ zadanie" FontSize="22" FontWeight="Bold">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Margin="10" Background="#efe4b0" Content="Zapisz" FontSize="15" FontWeight="Bold">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
             </Button>
-            
+            <Button Grid.Column="1" Margin="10" Background="#ccc" Content="Anuluj" FontSize="15" FontWeight="Bold">
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius" Value="5"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+
         </Grid>
     </Grid>
 </Window>

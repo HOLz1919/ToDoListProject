@@ -59,14 +59,21 @@
     <Compile Include="AddTask.xaml.cs">
       <DependentUpon>AddTask.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditTask.xaml.cs">
+      <DependentUpon>EditTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Importance.cs" />
     <Compile Include="Models\SubStep.cs" />
     <Compile Include="Models\Step.cs" />
     <Compile Include="Models\Task.cs" />
-    <Compile Include="ShowAndEditDetails.xaml.cs">
-      <DependentUpon>ShowAndEditDetails.xaml</DependentUpon>
+    <Compile Include="ShowDetails.xaml.cs">
+      <DependentUpon>ShowDetails.xaml</DependentUpon>
     </Compile>
     <Page Include="AddTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,7 +90,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ShowAndEditDetails.xaml">
+    <Page Include="ShowDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

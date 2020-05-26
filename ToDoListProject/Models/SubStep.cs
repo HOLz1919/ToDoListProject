@@ -51,5 +51,10 @@ namespace ToDoListProject
                 PropertyChanged(this,
                 new PropertyChangedEventArgs(property));
         }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

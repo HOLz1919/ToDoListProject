@@ -18,10 +18,10 @@ namespace ToDoListProject
     /// <summary>
     /// Logika interakcji dla klasy ShowAndEditDetails.xaml
     /// </summary>
-    public partial class ShowAndEditDetails : Window
+    public partial class ShowDetails : Window
     {
         public ObservableCollection<Step> steps;
-        public ShowAndEditDetails()
+        public ShowDetails()
         {
             InitializeComponent();
             steps = new ObservableCollection<Step>();

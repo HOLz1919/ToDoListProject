@@ -110,12 +110,12 @@ namespace ToDoListProject
         private void ShowDetailsInTask(object sender, MouseButtonEventArgs e)
         {
 
-            ShowAndEditDetails details = new ShowAndEditDetails();
-                details.Owner = this;
+            ShowDetails details = new ShowDetails();
+            details.Owner = this;
             Task selected = (Task)TasksListBox.SelectedItem;
             details.DataContext = selected;
             details.StepsListBox.ItemsSource = selected.ListOfSteps;
-                details.Show();
+            details.Show();
             
 
         }
@@ -141,6 +141,7 @@ namespace ToDoListProject
             YearComboBox.SelectedIndex = index;
 
         }
+
 
         private List<string> GenerateDaysToComboBox()
         {
@@ -190,7 +191,52 @@ namespace ToDoListProject
         {
             if(Tasks == null)
             {
-                Tasks = new ObservableCollection<Task>();
+                Tasks = new ObservableCollection<Task>
+                {
+                    new Task(Category.Dom, false, "", "", Importance.Pilny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false), 
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Inne, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false),
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Płatności, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false),
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false),
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Zakupy, false, "", "", Importance.Zwykly, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false),
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Zakupy, false, "", "", Importance.Pilny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",false),
+                    new Step("Drugi",false),
+                    new Step("Trzeci",false)
+                    }),
+                    new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+                    {new Step("Pierwszy",true,new ObservableCollection<SubStep>
+                    {
+                        new SubStep("pierwszy",true),
+                        new SubStep("Drugi",true),
+                        new SubStep("Trzeci",true)
+                    }),
+                    new Step("Drugi",true,new ObservableCollection<SubStep>
+                    {
+                    new SubStep("pierwszy",true),
+                    new SubStep("Drugi",true)
+                    })
+                    })
+                };
             }
         }
 

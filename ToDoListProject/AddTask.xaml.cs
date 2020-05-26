@@ -60,30 +60,6 @@ namespace ToDoListProject
                 }
             }
 
-
-        //    int index = StepsListBox.SelectedIndex;
-
-            //    foreach (var listbox in FindVisualChildren<ListBox>(this))
-            //    {
-            //        if(listbox.Name== "SubStepsListBox")
-            //        {
-            //            if (Steps[index].SubSteps == null)
-            //            {
-            //                ObservableCollection<SubStep> subSteps = new ObservableCollection<SubStep>();
-            //                subSteps.Add(new SubStep("czesc", false));
-            //                Steps[index].SubSteps = subSteps;
-            //                listbox.Visibility = Visibility.Visible;
-
-            //            }
-            //            else
-            //            {
-            //                Steps[index].SubSteps.Add(new SubStep("dodaje nowe", false));
-
-            //            }
-            //        }
-            //    }
-
-
         }
 
         private void InitializeCollection()
@@ -109,22 +85,7 @@ namespace ToDoListProject
             DialogResult = true;
         }
 
-        //public IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
-        //{
-        //    if (depObj != null)
-        //    {
-        //        for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
-        //        {
-        //            DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
 
-        //            if (child != null && child is T)
-        //                yield return (T)child;
-
-        //            foreach (T childOfChild in FindVisualChildren<T>(child))
-        //                yield return childOfChild;
-        //        }
-        //    }
-        //}
 
     }
     public class EnumBooleanConverter : IValueConverter
@@ -152,4 +113,6 @@ namespace ToDoListProject
             return Enum.Parse(targetType, parameterString);
         }
     }
+
+
 }
