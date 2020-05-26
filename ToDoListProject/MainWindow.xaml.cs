@@ -112,6 +112,9 @@ namespace ToDoListProject
 
             ShowAndEditDetails details = new ShowAndEditDetails();
                 details.Owner = this;
+            Task selected = (Task)TasksListBox.SelectedItem;
+            details.DataContext = selected;
+            details.StepsListBox.ItemsSource = selected.ListOfSteps;
                 details.Show();
             
 

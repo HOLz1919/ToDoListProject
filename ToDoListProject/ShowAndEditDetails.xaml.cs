@@ -20,9 +20,12 @@ namespace ToDoListProject
     /// </summary>
     public partial class ShowAndEditDetails : Window
     {
+        public ObservableCollection<Step> steps;
         public ShowAndEditDetails()
         {
             InitializeComponent();
+            steps = new ObservableCollection<Step>();
+            StepsListBox.ItemsSource = steps;
         }
     }
 }
