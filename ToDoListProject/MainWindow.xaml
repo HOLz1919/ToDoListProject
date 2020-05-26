@@ -116,7 +116,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox x:Name="TasksListBox">
+            <ListBox x:Name="TasksListBox" ListBoxItem.MouseDoubleClick="ShowDetailsInTask">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -124,7 +124,7 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="GridItem" Width="120" Height="200" Background="White" MouseLeftButtonDown="GridItem_MouseLeftButtonDown">
+                        <Grid x:Name="GridItem" Width="120" Height="200" Background="White" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.3*"></RowDefinition>
                                 <RowDefinition Height="0.6*"></RowDefinition>

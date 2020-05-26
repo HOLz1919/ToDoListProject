@@ -107,14 +107,13 @@ namespace ToDoListProject
         {
 
         }
-        private void GridItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ShowDetailsInTask(object sender, MouseButtonEventArgs e)
         {
 
             ShowAndEditDetails details = new ShowAndEditDetails();
-            if (details.ShowDialog() == true)
-            {
-            //
-            }
+                details.Owner = this;
+                details.Show();
+            
 
         }
 
