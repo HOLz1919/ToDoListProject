@@ -31,8 +31,7 @@ namespace ToDoListProject
             InitilizeCollection();
             SelectDefaultItemsInComboBoxes();
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
-            Tasks = new ObservableCollection<Task>();
-            tasksListBox.ItemsSource = Tasks;
+            TasksListBox.ItemsSource = Tasks;
             
         }
 
@@ -69,7 +68,7 @@ namespace ToDoListProject
             };
             if (addTask.ShowDialog() == true)
             {
-                Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem,false,(String)addTask.CreationDate.Content,null,Importance.Zwykly,addTask.Steps);
+                Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem,false,(String)addTask.CreationDate.Content,addTask.DatePicker.SelectedDate.ToString(),Importance.Zwykly,addTask.Steps);
                 Tasks.Add(task);
             }
             else
@@ -108,7 +107,16 @@ namespace ToDoListProject
         {
 
         }
+        private void GridItem_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
+            ShowAndEditDetails details = new ShowAndEditDetails();
+            if (details.ShowDialog() == true)
+            {
+            //
+            }
+
+        }
 
 
 
@@ -184,6 +192,6 @@ namespace ToDoListProject
             }
         }
 
-
+        
     }
 }

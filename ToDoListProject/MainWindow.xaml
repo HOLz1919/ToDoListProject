@@ -116,7 +116,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox x:Name="tasksListBox">
+            <ListBox x:Name="TasksListBox">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel />
@@ -124,32 +124,31 @@
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid x:Name="GridItem" Width="100" Height="200" Background="White">
+                        <Grid x:Name="GridItem" Width="120" Height="200" Background="White" MouseLeftButtonDown="GridItem_MouseLeftButtonDown">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="0.25*"></RowDefinition>
+                                <RowDefinition Height="0.3*"></RowDefinition>
                                 <RowDefinition Height="0.6*"></RowDefinition>
-                                <RowDefinition Height="0.15*"></RowDefinition>
+                                <RowDefinition Height="0.10*"></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid Grid.Row="0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="0.4*"></RowDefinition>
                                     <RowDefinition Height="0.6*"></RowDefinition>
                                 </Grid.RowDefinitions>
-                                <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="20 0" FontSize="22" FontWeight="Bold"></Label>
+                                <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalAlignment="Center" FontSize="10" FontWeight="Bold"></Label>
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                                        <ColumnDefinition Width="0.35*"></ColumnDefinition>
-                                        <ColumnDefinition Width="0.35*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition></RowDefinition>
-                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
+                                        <RowDefinition Height="auto"></RowDefinition>
                                     </Grid.RowDefinitions>
-                                    <Label Grid.Row="0" Grid.Column="1" Content="Utworzono:" HorizontalContentAlignment="Right"></Label>
-                                    <Label Grid.Row="1" Grid.Column="1" Content="Termin:" HorizontalContentAlignment="Right"></Label>
-                                    <Label Grid.Row="0" Grid.Column="2" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"></Label>
-                                    <Label Grid.Row="1" Grid.Column="2" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"></Label>
+                                    <Label Grid.Row="0" Grid.Column="0" Content="Utworzono:" HorizontalContentAlignment="Right" FontSize="8"></Label>
+                                    <Label Grid.Row="1" Grid.Column="0" Content="Termin:" HorizontalContentAlignment="Right"  FontSize="8"></Label>
+                                    <Label Grid.Row="0" Grid.Column="1" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
+                                    <Label Grid.Row="1" Grid.Column="1" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"  FontSize="8"></Label>
                                 </Grid>
                             </Grid>
                             <Grid Grid.Row="1">
@@ -159,7 +158,7 @@
                             </Grid>
 
                             <Grid Grid.Row="2">
-                                <Button Margin="10" Background="#efe4b0" Content="Zakończ zadanie" FontSize="22" FontWeight="Bold">
+                                <Button Margin="5 0" Background="#efe4b0" Content="Zakończ zadanie" FontWeight="Bold">
                                     <Button.Resources>
                                         <Style TargetType="Border">
                                             <Setter Property="CornerRadius" Value="5"/>

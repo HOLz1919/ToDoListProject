@@ -8,6 +8,7 @@
         Title="AddTask" Height="450" Width="420">
 
     <Window.Resources>
+
         <Style x:Key="ComboBoxTest2" TargetType="{x:Type ComboBox}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -78,7 +79,11 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <RadioButton Grid.Row="0" Margin="3" Content="Zwykly" IsChecked="True"></RadioButton>
+                        <Grid.Resources>
+                            <local:EnumBooleanConverter x:Key="enumBooleanConverter"/>
+                        </Grid.Resources>
+                        <RadioButton Grid.Row="0" Margin="3" Content="Zwykly" IsChecked="{Binding Path=Importance, Converter={StaticResource enumBooleanConverter}, 
+        ConverterParameter=Zwykly}"></RadioButton>
                         <RadioButton Grid.Row="1" Margin="3" Content="Wazny"></RadioButton>
                         <RadioButton Grid.Row="2" Margin="3" Content="Pilny"></RadioButton>
                     </Grid>
