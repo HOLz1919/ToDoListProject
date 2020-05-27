@@ -73,18 +73,15 @@
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <GroupBox Grid.Column="0" Header="Stopien Pilności" Margin="15 5">
-                    <Grid>
+                    <Grid x:Name="GroupBox">
                         <Grid.RowDefinitions>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <Grid.Resources>
-                            <local:EnumBooleanConverter x:Key="enumBooleanConverter"/>
-                        </Grid.Resources>
-                        <RadioButton Grid.Row="0" Margin="3" Content="Zwykly" IsChecked="True"></RadioButton>
-                        <RadioButton Grid.Row="1" Margin="3" Content="Wazny"></RadioButton>
-                        <RadioButton Grid.Row="2" Margin="3" Content="Pilny"></RadioButton>
+                        <RadioButton Grid.Row="0" Margin="3" Content="Zwykly" Tag="0" IsChecked="True"></RadioButton>
+                        <RadioButton Grid.Row="1" Margin="3" Content="Wazny" Tag="1"></RadioButton>
+                        <RadioButton Grid.Row="2" Margin="3" Content="Pilny" Tag="2"></RadioButton>
                     </Grid>
                 </GroupBox>
                 <Grid Grid.Column="1">

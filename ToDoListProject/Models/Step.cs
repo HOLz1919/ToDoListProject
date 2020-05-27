@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,7 +38,7 @@ namespace ToDoListProject
             }
             set
             {
-                mainStep = value; OnPropertyChanged("View");
+                mainStep = value; NotifyPropertyChanged();
             }
         }
         public bool IsFinishedStep
@@ -48,7 +49,7 @@ namespace ToDoListProject
             }
             set
             {
-                isFinishedStep = value;
+                isFinishedStep = value; NotifyPropertyChanged();
             }
         }
         public ObservableCollection<SubStep> SubSteps
@@ -59,15 +60,13 @@ namespace ToDoListProject
             }
             set
             {
-                subSteps = value; OnPropertyChanged("View");
+                subSteps = value; NotifyPropertyChanged();
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged(string property)
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this,
-                new PropertyChangedEventArgs(property));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         public override string ToString()

@@ -169,6 +169,17 @@
                                 </Grid>
                             </Grid>
                         </Border>
+                        <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Importance}" Value="Pilny">
+                                <Setter TargetName="GridItem" Property="Background" Value="#fd3b3b"/>
+                                </DataTrigger>
+                            <DataTrigger Binding="{Binding Importance}" Value="Wazny">
+                                <Setter TargetName="GridItem" Property="Background" Value="#FFFF99"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Importance}" Value="Zwykly">
+                                <Setter TargetName="GridItem" Property="Background" Value="white"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemContainerStyle>
