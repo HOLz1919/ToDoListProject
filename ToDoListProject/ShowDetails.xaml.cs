@@ -27,5 +27,20 @@ namespace ToDoListProject
             steps = new ObservableCollection<Step>();
             StepsListBox.ItemsSource = steps;
         }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var cb = sender as CheckBox;
+            var item = cb.DataContext;
+            StepsListBox.SelectedItem = item; 
+            Step step =(Step) StepsListBox.SelectedItem;
+            if (step.SubSteps != null)
+            {
+                foreach (SubStep i in step.SubSteps)
+                {
+                    i.IsFinishedSubStep = true;
+                }
+            }
+        }
     }
 }

@@ -71,12 +71,8 @@ namespace ToDoListProject
                 RadioButton radio = addTask.GroupBox.Children.OfType<RadioButton>().FirstOrDefault(r => r.IsChecked == true);
                 int ww = Int32.Parse(radio.Tag.ToString());
                 Importance imp = (Importance)ww;
-                Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem, false, (String)addTask.CreationDate.Content, addTask.DatePicker.SelectedDate.Value.Date.ToShortDateString(),imp, addTask.Steps);
+                Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem, false, (String)addTask.CreationDate.Content, addTask.date,imp, addTask.Steps);
                 Tasks.Add(task);
-            }
-            else
-            {
-                MessageBox.Show("Coś poszło nie tak");
             }
         }
 

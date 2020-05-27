@@ -8,7 +8,6 @@
         Title="AddTask" Height="450" Width="420">
 
     <Window.Resources>
-
         <Style x:Key="ComboBoxTest2" TargetType="{x:Type ComboBox}">
             <Setter Property="Template">
                 <Setter.Value>
@@ -66,7 +65,7 @@
                 <RowDefinition Height="0.35*"></RowDefinition>
                 <RowDefinition Height="0.65*"></RowDefinition>
             </Grid.RowDefinitions>
-            <ComboBox x:Name="CategoryComboBox" Grid.Row="0" Margin="30 10" Style="{StaticResource ComboBoxTest2}"></ComboBox>
+            <ComboBox x:Name="CategoryComboBox" Grid.Row="0" Margin="30 10" Style="{StaticResource ComboBoxTest2}" SelectedIndex="0"></ComboBox>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
@@ -96,7 +95,7 @@
                     <Label Grid.Row="0" Content="Utworzono:" VerticalContentAlignment="Center"></Label>
                     <Label Grid.Row="0" Grid.Column="1" x:Name="CreationDate" VerticalContentAlignment="Center"></Label>
                     <Label Grid.Row="1" Content="Termin:" VerticalContentAlignment="Center"></Label>
-                    <DatePicker Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Height="25" Name="DatePicker" SelectedDateFormat="Short"/>
+                    <DatePicker Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Height="25" Name="DatePicker" SelectedDateFormat="Short" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 </Grid>
             </Grid>
         </Grid>
@@ -120,7 +119,10 @@
                 <ListBox Grid.Row="1" x:Name="StepsListBox" SelectionChanged="StepsListBox_SelectionChanged">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="MainStepTextBox" Text="{Binding MainStep,UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="MainStepTextBox" Text="{Binding MainStep,UpdateSourceTrigger=PropertyChanged}" Width="100" GotFocus="MainStepTextBox_GotFocus" ></TextBox>
+                                <Button x:Name="DeleteStepButton" Content="-" Width="20" Background="#efe4b0" Click="DeleteStepButton_Click"/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
@@ -156,7 +158,10 @@
                 <ListBox x:Name="SubStepsListBox" Grid.Row="1">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <TextBox x:Name="StepTextBox" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="StepTextBox" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="100" GotFocus="StepTextBox_GotFocus"></TextBox>
+                                <Button x:Name="DeleteSubStepButton" Content="-" Width="20" Background="#efe4b0" Click="DeleteSubStepButton_Click"/>
+                            </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>

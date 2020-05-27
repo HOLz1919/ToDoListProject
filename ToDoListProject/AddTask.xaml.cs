@@ -21,8 +21,8 @@ namespace ToDoListProject
     /// </summary>
     public partial class AddTask : Window
     {
-
         public ObservableCollection<Step> Steps;
+        public String date;
         public AddTask()
         {
             InitializeComponent();
@@ -30,6 +30,7 @@ namespace ToDoListProject
             StepsListBox.ItemsSource = Steps;
             CreationDate.Content = DateTime.Now.ToString("dd.MM.yyyy");
             DatePicker.BlackoutDates.AddDatesInPast();
+            date = null; 
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
@@ -85,6 +86,36 @@ namespace ToDoListProject
             DialogResult = true;
         }
 
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            date = DatePicker.SelectedDate.Value.Date.ToShortDateString();
+        }
+
+        private void MainStepTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            StepsListBox.SelectedItem = tb.DataContext;
+        }
+
+        private void StepTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            SubStepsListBox.SelectedItem = tb.DataContext;
+        }
+
+        private void DeleteSubStepButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            var item =(SubStep) button.DataContext;
+            Steps[StepsListBox.SelectedIndex].SubSteps.Remove(item);
+        }
+
+        private void DeleteStepButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            var item = (Step)button.DataContext;
+            Steps.Remove(item);
+        }
     }
     
 }
