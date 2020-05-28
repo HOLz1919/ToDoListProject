@@ -109,11 +109,10 @@ namespace ToDoListProject
         private void ShowDetailsInTask(object sender, MouseButtonEventArgs e)
         {
 
-            ShowDetails details = new ShowDetails();
-            details.Owner = this;
             Task selected = (Task)TasksListBox.SelectedItem;
+            ShowDetails details = new ShowDetails(selected.ListOfSteps);
+            details.Owner = this;
             details.DataContext = selected;
-            details.StepsListBox.ItemsSource = selected.ListOfSteps;
             details.Show();
             
 

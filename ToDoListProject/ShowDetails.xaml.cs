@@ -21,10 +21,10 @@ namespace ToDoListProject
     public partial class ShowDetails : Window
     {
         public ObservableCollection<Step> steps;
-        public ShowDetails()
+        public ShowDetails(ObservableCollection<Step> steps_)
         {
             InitializeComponent();
-            steps = new ObservableCollection<Step>();
+            steps = steps_;
             StepsListBox.ItemsSource = steps;
         }
 
@@ -41,6 +41,14 @@ namespace ToDoListProject
                     i.IsFinishedSubStep = true;
                 }
             }
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditTask editTask = new EditTask(steps);
+            editTask.Owner = this;
+            editTask.DataContext = this.DataContext;
+            editTask.ShowDialog();
         }
     }
 }

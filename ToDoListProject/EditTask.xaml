@@ -5,64 +5,189 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ToDoListProject"
         mc:Ignorable="d"
-        Title="EditTask" Height="450" Width="300">
+        Title="EditTask" Height="450" Width="420">
+    <Window.Resources>
+        <Style x:Key="ComboBoxTest2" TargetType="{x:Type ComboBox}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Grid.Column="2" Focusable="false" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" >
+                                <ToggleButton.Template>
+                                    <ControlTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border x:Name="Border"  Grid.ColumnSpan="2" CornerRadius="5" Background="#efe4b0" BorderBrush="Black" BorderThickness="1" />
+                                            <Border Grid.Column="0" CornerRadius="5,0,0,5"  Margin="1"  Background="#efe4b0"  BorderBrush="Black" BorderThickness="0,0,1,0" />
+                                            <Path x:Name="Arrow" Grid.Column="1"  Fill="Orange" HorizontalAlignment="Center" VerticalAlignment="Center" Data="M 0 0 L 4 4 L 8 0 Z"/>
+                                        </Grid>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#efe4b0" />
+                                            </Trigger>
+                                            <Trigger Property="ToggleButton.IsChecked" Value="true">
+                                                <Setter TargetName="Border" Property="Background" Value="#efe4b0" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ToggleButton.Template>
+                            </ToggleButton>
+                            <ContentPresenter Name="ContentSite" IsHitTestVisible="False"  VerticalAlignment="Center" Content="{TemplateBinding SelectionBoxItem}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Margin="3" />
+                            <TextBox x:Name="PART_EditableTextBox" Visibility="Hidden" IsReadOnly="{TemplateBinding IsReadOnly}" />
+                            <Popup Name="Popup" Placement="Bottom" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True"  Focusable="False" PopupAnimation="Slide">
+                                <Grid  Name="DropDown" SnapsToDevicePixels="True" MinWidth="{TemplateBinding ActualWidth}" MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                                    <Border x:Name="DropDownBorder" Background="#efe4b0" />
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+            </Style.Triggers>
+        </Style>
+
+            <local:RadioBoolToIntConverter x:Key="radioBoolToIntConverter" />
+
+    </Window.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.25*"></RowDefinition>
-            <RowDefinition Height="0.6*"></RowDefinition>
-            <RowDefinition Height="0.15*"></RowDefinition>
+            <RowDefinition Height="0.35*"></RowDefinition>
+            <RowDefinition Height="0.65*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.4*"></RowDefinition>
-                <RowDefinition Height="0.6*"></RowDefinition>
+                <RowDefinition Height="0.35*"></RowDefinition>
+                <RowDefinition Height="0.65*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="{Binding Category}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="20 0" FontSize="22" FontWeight="Bold"></Label>
+            <ComboBox x:Name="CategoryComboBox" Grid.Row="0" Margin="30 10" Style="{StaticResource ComboBoxTest2}" SelectedItem="{Binding Category}"></ComboBox>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.35*"></ColumnDefinition>
-                    <ColumnDefinition Width="0.35*"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="1" Content="Utworzono:" HorizontalContentAlignment="Right"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Content="Termin:" HorizontalContentAlignment="Right"></Label>
-                <Label Grid.Row="0" Grid.Column="2" Content="{Binding DateOfCreate}" HorizontalContentAlignment="Center"></Label>
-                <Label Grid.Row="1" Grid.Column="2" Content="{Binding DateOfEnd}" HorizontalContentAlignment="Center"></Label>
+                <GroupBox Grid.Column="0" Header="Stopien Pilności" Margin="15 5">
+                    <Grid x:Name="GroupBox">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <RadioButton Grid.Row="0" Margin="3" Content="Zwykły" IsChecked="{Binding Path=Importance, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=Zwykly}"></RadioButton>
+                        <RadioButton Grid.Row="1" Margin="3" Content="Ważny" IsChecked="{Binding Path=Importance, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=Wazny}"></RadioButton>
+                        <RadioButton Grid.Row="2" Margin="3" Content="Pilny" IsChecked="{Binding Path=Importance, Converter={StaticResource radioBoolToIntConverter}, ConverterParameter=Pilny}"></RadioButton>
+                    </Grid>
+                </GroupBox>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Content="Utworzono:" VerticalContentAlignment="Center"></Label>
+                    <Label Grid.Row="0" Grid.Column="1" VerticalContentAlignment="Center" Content="{Binding DateOfCreate}"></Label>
+                    <Label Grid.Row="1" Content="Termin:" VerticalContentAlignment="Center"></Label>
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="DateOfEnd" VerticalContentAlignment="Center" Height="25" Text="{Binding DateOfEnd}"/>
+                </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Row="1">
-            <ListBox Margin="5" x:Name="StepsListBox">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBox Text="{Binding MainStep,UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Grid>
-
-        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.8*"></RowDefinition>
+                <RowDefinition Height="0.2*"></RowDefinition>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="140"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="140"/>
             </Grid.ColumnDefinitions>
-            <Button Margin="10" Background="#efe4b0" Content="Zapisz" FontSize="15" FontWeight="Bold">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
-            <Button Grid.Column="1" Margin="10" Background="#ccc" Content="Anuluj" FontSize="15" FontWeight="Bold">
-                <Button.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Button.Resources>
-            </Button>
+
+            <Grid  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Kroki"/>
+                <ListBox Grid.Row="1" x:Name="StepsListBox" SelectionChanged="StepsListBox_SelectionChanged">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="MainStepTextBox" Text="{Binding MainStep,UpdateSourceTrigger=PropertyChanged}" Width="100" GotFocus="MainStepTextBox_GotFocus" ></TextBox>
+                                <Button x:Name="DeleteStepButton" Content="-" Width="20" Background="#efe4b0" Click="DeleteStepButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="AddStep" Content="🠔Dodaj krok" Height="30" Margin="5" Background="#efe4b0" FontWeight="Bold" Click="AddStep_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="AddSubStep" Content="Dodaj podkrok→" Grid.Row="1" Height="30" Margin="5" Background="#efe4b0" FontWeight="Bold" Click="AddSubStep_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="Podkroki"/>
+                <ListBox x:Name="SubStepsListBox" Grid.Row="1">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="StepTextBox" Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" Width="100"></TextBox>
+                                <Button x:Name="DeleteSubStepButton" Content="-" Width="20" Background="#efe4b0" Click="DeleteSubStepButton_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+            <Grid Grid.Row="2" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SaveButton" Margin="5" Background="#efe4b0" Content="Zapisz" FontSize="20" FontWeight="Bold" Click="SaveButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button x:Name="CancelButton" Grid.Column="1" Margin="5" Background="#efe4b0" Content="Anuluj" FontSize="20" FontWeight="Bold" Click="CancelButton_Click">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="5"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+            </Grid>
 
         </Grid>
     </Grid>
