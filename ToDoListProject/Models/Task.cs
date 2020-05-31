@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using ToDoListProject.Models;
 
 namespace ToDoListProject
@@ -136,6 +137,9 @@ namespace ToDoListProject
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        public static explicit operator Task(ListBox v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

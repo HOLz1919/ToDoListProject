@@ -24,7 +24,7 @@ namespace ToDoListProject
     {
 
         ObservableCollection<Task> Tasks { get; set; }
-
+        ObservableCollection<Task> tempListCategory { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -240,16 +240,75 @@ namespace ToDoListProject
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             Button button = sender as Button;
             if (CategoryComboBox.SelectedItem.Equals(Category.Zakupy))
+            { 
+               tempListCategory  = new ObservableCollection<Task>( );
+                foreach (Task task in Tasks)
+                { 
+                    
+                        if (task.Category.Equals(Category.Zakupy) ) 
+                        tempListCategory.Add(task);
+                        
+                }
+                TasksListBox.ItemsSource = tempListCategory;
+            }
+            if (CategoryComboBox.SelectedItem.Equals(Category.Dom))
             {
-                TasksListBox.Visibility = Visibility.Hidden;
-            };
-            if (CategoryComboBox.SelectedItem.Equals(Category.Wszystkie))
-            {
-                TasksListBox.Visibility = Visibility.Visible;
-            };
+                tempListCategory = new ObservableCollection<Task>();
+                foreach (Task task in Tasks)
+                {
 
-        }
+                    if (task.Category.Equals(Category.Dom))
+                        tempListCategory.Add(task);
+
+                }
+                TasksListBox.ItemsSource = tempListCategory;
+            }
+            if (CategoryComboBox.SelectedItem.Equals(Category.Inne))
+            {
+                tempListCategory = new ObservableCollection<Task>();
+                foreach (Task task in Tasks)
+                {
+
+                    if (task.Category.Equals(Category.Inne))
+                        tempListCategory.Add(task);
+
+                }
+                TasksListBox.ItemsSource = tempListCategory;
+            }
+            if (CategoryComboBox.SelectedItem.Equals(Category.Płatności))
+            {
+                tempListCategory = new ObservableCollection<Task>();
+                foreach (Task task in Tasks)
+                {
+
+                    if (task.Category.Equals(Category.Płatności))
+                        tempListCategory.Add(task);
+
+                }
+                TasksListBox.ItemsSource = tempListCategory;
+            }
+            if (CategoryComboBox.SelectedItem.Equals(Category.Szkoła))
+            {
+                tempListCategory = new ObservableCollection<Task>();
+                foreach (Task task in Tasks)
+                {
+
+                    if (task.Category.Equals(Category.Szkoła))
+                        tempListCategory.Add(task);
+
+                }
+                TasksListBox.ItemsSource = tempListCategory;
+            }
+            if (CategoryComboBox.SelectedItem.Equals(Category.Wszystkie))
+                {
+                       
+                       TasksListBox.ItemsSource = Tasks;
+                };
+
+            }
+        
     }
 }
