@@ -110,7 +110,7 @@
                     </TextBox.Resources>
                 </TextBox>
                 <ComboBox x:Name="CategoryComboBox" Grid.Column="1" Margin="2" Background="#efe4b0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" 
-                          FontSize="18" Style="{StaticResource ComboBoxTest2}" SelectedIndex="0">
+                          FontSize="18" Style="{StaticResource ComboBoxTest2}" SelectedIndex="0" SelectionChanged="CategoryComboBox_SelectionChanged">
                 </ComboBox>
                 
             </Grid>

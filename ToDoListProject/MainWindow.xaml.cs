@@ -238,6 +238,18 @@ namespace ToDoListProject
             }
         }
 
-        
+        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Button button = sender as Button;
+            if (CategoryComboBox.SelectedItem.Equals(Category.Zakupy))
+            {
+                TasksListBox.Visibility = Visibility.Hidden;
+            };
+            if (CategoryComboBox.SelectedItem.Equals(Category.Wszystkie))
+            {
+                TasksListBox.Visibility = Visibility.Visible;
+            };
+
+        }
     }
 }
