@@ -26,7 +26,6 @@ namespace ToDoListProject
         ObservableCollection<Task> Tasks { get; set; }
         ObservableCollection<Task> tempListCategory { get; set; }
 
-        ObservableCollection<Task> tasksByText { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -122,27 +121,30 @@ namespace ToDoListProject
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            tasksByText = new ObservableCollection<Task>();
             if (String.IsNullOrEmpty(SearchTextBox.Text))
             {
-                TasksListBox.ItemsSource = Tasks;
+                for(int i = 0; i < Tasks.Count; i++)
+                {
+                    (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                }
             }
             else
             {
-                foreach (Task task in Tasks)
+                for (int i = 0; i < Tasks.Count; i++)
                 {
-                    if (task.AllSteps.Contains(SearchTextBox.Text))
+                    if (Tasks[i].AllSteps.Contains(SearchTextBox.Text))
                     {
-                        tasksByText.Add(task);
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Collapsed;
                     }
                 }
-                TasksListBox.ItemsSource = tasksByText;
+                
             }
 
         }
-
-
-
 
 
 
