@@ -25,6 +25,8 @@ namespace ToDoListProject
 
         ObservableCollection<Task> Tasks { get; set; }
         ObservableCollection<Task> tempListCategory { get; set; }
+
+        ObservableCollection<Task> tasksByText { get; set; }
         public MainWindow()
         {
             InitializeComponent();
@@ -118,6 +120,29 @@ namespace ToDoListProject
 
         }
 
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tasksByText = new ObservableCollection<Task>();
+            if (String.IsNullOrEmpty(SearchTextBox.Text))
+            {
+                TasksListBox.ItemsSource = Tasks;
+            }
+            else
+            {
+                foreach (Task task in Tasks)
+                {
+                    if (task.AllSteps.Contains(SearchTextBox.Text))
+                    {
+                        tasksByText.Add(task);
+                    }
+                }
+                TasksListBox.ItemsSource = tasksByText;
+            }
+
+        }
+
+
+
 
 
 
@@ -192,7 +217,7 @@ namespace ToDoListProject
                 Tasks = new ObservableCollection<Task>
                 {
                     new Task(Category.Dom, false, "", "", Importance.Pilny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false), 
+                    {new Step("Chuj",false), 
                     new Step("Drugi",false),
                     new Step("Trzeci",false)
                     }),
@@ -309,6 +334,7 @@ namespace ToDoListProject
                 };
 
             }
-        
+
+
     }
 }

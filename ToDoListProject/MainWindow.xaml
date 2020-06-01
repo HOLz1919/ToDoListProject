@@ -95,7 +95,7 @@
                     <ColumnDefinition Width="0.7*"></ColumnDefinition>
                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="SearchTextBox" Grid.Column="0" LostFocus="SearchTextBox_LostFocus" VerticalContentAlignment="Center" Margin="2" FontSize="18" >
+                <TextBox x:Name="SearchTextBox" Grid.Column="0" LostFocus="SearchTextBox_LostFocus" VerticalContentAlignment="Center" Margin="2" FontSize="18" TextChanged="SearchTextBox_TextChanged" >
                     <TextBox.Resources>
                         <Style TargetType="Border">
                             <Setter Property="CornerRadius" Value="5"/>
