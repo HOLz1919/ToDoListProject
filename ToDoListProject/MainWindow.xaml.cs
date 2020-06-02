@@ -267,75 +267,36 @@ namespace ToDoListProject
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-            Button button = sender as Button;
-            if (CategoryComboBox.SelectedItem.Equals(Category.Zakupy))
-            { 
-               tempListCategory  = new ObservableCollection<Task>( );
-                foreach (Task task in Tasks)
-                { 
-                    
-                        if (task.Category.Equals(Category.Zakupy) ) 
-                        tempListCategory.Add(task);
-                        
-                }
-                TasksListBox.ItemsSource = tempListCategory;
-            }
-            if (CategoryComboBox.SelectedItem.Equals(Category.Dom))
+            string selectedCategory = CategoryComboBox.SelectedItem.ToString();
+
+            //Pierwszy if potrzebny by uruchomić program bez błędu
+            if (TasksListBox.ItemContainerGenerator.Status != 0)
             {
-                tempListCategory = new ObservableCollection<Task>();
-                foreach (Task task in Tasks)
+                if (selectedCategory.Equals(Category.Wszystkie.ToString()))
                 {
-
-                    if (task.Category.Equals(Category.Dom))
-                        tempListCategory.Add(task);
-
+                    for (int i = 0; i < Tasks.Count; i++)
+                    {
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                    }
                 }
-                TasksListBox.ItemsSource = tempListCategory;
-            }
-            if (CategoryComboBox.SelectedItem.Equals(Category.Inne))
-            {
-                tempListCategory = new ObservableCollection<Task>();
-                foreach (Task task in Tasks)
+                else
                 {
-
-                    if (task.Category.Equals(Category.Inne))
-                        tempListCategory.Add(task);
-
+                    for (int i = 0; i < Tasks.Count; i++)
+                    {
+                        if (Tasks[i].Category.ToString().Equals(selectedCategory))
+                        {
+                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Collapsed;
+                        }
+                    }
+   
                 }
-                TasksListBox.ItemsSource = tempListCategory;
             }
-            if (CategoryComboBox.SelectedItem.Equals(Category.Płatności))
-            {
-                tempListCategory = new ObservableCollection<Task>();
-                foreach (Task task in Tasks)
-                {
 
-                    if (task.Category.Equals(Category.Płatności))
-                        tempListCategory.Add(task);
-
-                }
-                TasksListBox.ItemsSource = tempListCategory;
-            }
-            if (CategoryComboBox.SelectedItem.Equals(Category.Szkoła))
-            {
-                tempListCategory = new ObservableCollection<Task>();
-                foreach (Task task in Tasks)
-                {
-
-                    if (task.Category.Equals(Category.Szkoła))
-                        tempListCategory.Add(task);
-
-                }
-                TasksListBox.ItemsSource = tempListCategory;
-            }
-            if (CategoryComboBox.SelectedItem.Equals(Category.Wszystkie))
-                {
-                       
-                       TasksListBox.ItemsSource = Tasks;
-                };
-
-            }
+        }
 
 
     }
