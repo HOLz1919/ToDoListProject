@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -12,6 +13,12 @@ namespace ToDoListProject
     {
         private string name;
         private bool isFinishedSubStep;
+
+        [Key]
+        public int SubStepId { get; set; }
+
+        public int StepId { get; set; }
+        public virtual Step Step { get; set; }
 
         public SubStep() { }
 

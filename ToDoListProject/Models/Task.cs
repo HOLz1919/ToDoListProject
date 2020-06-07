@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -18,7 +19,10 @@ namespace ToDoListProject
         private string dateOfCreate;
         private string dateOfEnd;
         private Importance importance;
-        private ObservableCollection<Step> listOfSteps;
+        private  ObservableCollection<Step> listOfSteps;
+
+        [Key]
+        public int TaskId { get; set; }
 
         public Task(Category category, bool isFinishedTask, string dateOfCreate, string dateOfEnd, Importance importance, ObservableCollection<Step> listOfSteps)
         {
@@ -97,7 +101,7 @@ namespace ToDoListProject
             }
         }
 
-        public ObservableCollection<Step> ListOfSteps
+        public virtual ObservableCollection<Step> ListOfSteps
         {
             get
             {
@@ -122,10 +126,13 @@ namespace ToDoListProject
         {
             StringBuilder stringBuilder = new StringBuilder();
             int i = 1;
+            if (ListOfSteps != null)
+            {       
             foreach(Step step in ListOfSteps)
             {
                 stringBuilder.Append(i + ". ").Append(step);
                 i++;
+            }
             }
             return stringBuilder.ToString();
         }

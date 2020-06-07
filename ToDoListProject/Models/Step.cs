@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -14,6 +15,11 @@ namespace ToDoListProject
         private string mainStep;
         private bool isFinishedStep;
         private ObservableCollection<SubStep> subSteps;
+
+        [Key]
+        public int StepId { get; set; }
+        public int TaskId { get; set; }
+        public virtual Task Task { get; set; }
 
         public Step() { }
 
@@ -52,7 +58,7 @@ namespace ToDoListProject
                 isFinishedStep = value; NotifyPropertyChanged();
             }
         }
-        public ObservableCollection<SubStep> SubSteps
+        public virtual ObservableCollection<SubStep> SubSteps
         {
             get
             {
