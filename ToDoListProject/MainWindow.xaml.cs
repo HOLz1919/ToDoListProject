@@ -78,6 +78,7 @@ namespace ToDoListProject
                 Importance imp = (Importance)ww;
                 Task task = new Task((Category)addTask.CategoryComboBox.SelectedItem, false, (String)addTask.CreationDate.Content, addTask.date,imp, addTask.Steps);
                 Tasks.Add(task);
+                db.AddTask(task);
             }
         }
 
