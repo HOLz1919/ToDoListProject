@@ -78,16 +78,16 @@
                     <ColumnDefinition Width="0.8*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 
-                <CheckBox x:Name="DayCheckBox" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="DayCheckBox_Checked" Unchecked="DayCheckBox_Unchecked"></CheckBox>
-                <ComboBox x:Name="DayComboBox" Grid.Column="1" FontSize="18" Style="{StaticResource ComboBoxTest2}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <CheckBox x:Name="DayCheckBox" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DateCheckBox_Checked"></CheckBox>
+                <ComboBox x:Name="DayComboBox" Grid.Column="1" FontSize="18" Style="{StaticResource ComboBoxTest2}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="DateComboBox_SelectionChanged">
                 </ComboBox>
 
-                <CheckBox x:Name="MonthCheckBox" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Checked="MonthCheckBox_Checked" Unchecked="MonthCheckBox_Unchecked"></CheckBox>
-                <ComboBox x:Name="MonthComboBox" Grid.Column="3" FontSize="18" Style="{StaticResource ComboBoxTest2}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <CheckBox x:Name="MonthCheckBox" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DateCheckBox_Checked" ></CheckBox>
+                <ComboBox x:Name="MonthComboBox" Grid.Column="3" FontSize="18" Style="{StaticResource ComboBoxTest2}"  VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="DateComboBox_SelectionChanged">
                 </ComboBox>
 
-                <CheckBox x:Name="YearCheckBox" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="True" Checked="YearCheckBox_Checked" Unchecked="YearCheckBox_Unchecked"></CheckBox>
-                <ComboBox x:Name="YearComboBox" Grid.Column="5" FontSize="18" Style="{StaticResource ComboBoxTest2}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                <CheckBox x:Name="YearCheckBox" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" Click="DateCheckBox_Checked" ></CheckBox>
+                <ComboBox x:Name="YearComboBox" Grid.Column="5" FontSize="18" Style="{StaticResource ComboBoxTest2}" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" SelectionChanged="DateComboBox_SelectionChanged">
                 </ComboBox>
             </Grid>
             <Grid Grid.Row="1">

@@ -77,36 +77,93 @@ namespace ToDoListProject
             }
         }
 
-
-        private void DayCheckBox_Checked(object sender, RoutedEventArgs e)
+        private void DateCheckBox_Checked(object  sender, RoutedEventArgs e)
         {
-
+            var checkbox = sender as CheckBox;
+            if(checkbox.Name.Equals(DayCheckBox.Name) && checkbox.IsChecked==true)
+            {
+                DayCheckBox.IsChecked = true;
+                MonthCheckBox.IsChecked = true;
+                YearCheckBox.IsChecked = true;
+            }
+            else if (checkbox.Name.Equals(MonthCheckBox.Name) && checkbox.IsChecked==true)
+            {
+                DayCheckBox.IsChecked = false;
+                MonthCheckBox.IsChecked = true;
+                YearCheckBox.IsChecked = true;
+            }
+            else if (checkbox.Name.Equals(YearCheckBox.Name) && checkbox.IsChecked==true)
+            {
+                DayCheckBox.IsChecked = false;
+                MonthCheckBox.IsChecked = false;
+                YearCheckBox.IsChecked = true;
+            }
+            else
+            {
+                DayCheckBox.IsChecked = false;
+                MonthCheckBox.IsChecked = false;
+                YearCheckBox.IsChecked = false;
+            }
+            string dateTime = DateofSearch();
+            SearchDate(dateTime);
         }
 
-        private void DayCheckBox_Unchecked(object sender, RoutedEventArgs e)
+        private string DateofSearch()
         {
-
+            string date;
+            if (DayCheckBox.IsChecked == true)
+            {
+                date = DayComboBox.SelectedItem.ToString() + "." + (MonthComboBox.SelectedIndex + 1).ToString() + "." + YearComboBox.SelectedItem.ToString();
+            }
+            else if(MonthCheckBox.IsChecked == true)
+            {
+                date = (MonthComboBox.SelectedIndex + 1).ToString() + "." + YearComboBox.SelectedItem.ToString();
+            }
+            else if (YearCheckBox.IsChecked == true)
+            {
+                date = YearComboBox.SelectedItem.ToString();
+            }
+            else
+            {
+                date = null;
+            }
+            return date;
         }
 
-        private void MonthCheckBox_Checked(object sender, RoutedEventArgs e)
+        private void SearchDate(string date)
         {
-
+            if (String.IsNullOrEmpty(date))
+            {
+                for (int i = 0; i < Tasks.Count; i++)
+                {
+                    (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                }
+            }
+            else
+            {
+                for (int i = 0; i < Tasks.Count; i++)
+                {
+                    if (Tasks[i].DateOfCreate.Contains(date) || Tasks[i].DateOfEnd.Contains(date))
+                    {
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Collapsed;
+                    }
+                }
+            }
         }
+       private void DateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       {
+            string dateTime = DateofSearch();
+            if (TasksListBox.ItemContainerGenerator.Status != 0)
+            {
+                SearchDate(dateTime);
+            }
+                
+       }
 
-        private void MonthCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void YearCheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void YearCheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-
-        }
         private void ShowDetailsInTask(object sender, MouseButtonEventArgs e)
         {
 
@@ -218,12 +275,12 @@ namespace ToDoListProject
             {
                 Tasks = new ObservableCollection<Task>
                 {
-                    new Task(Category.Dom, false, "", "", Importance.Pilny, new ObservableCollection<Step>
+                    new Task(Category.Dom, false, "7.10.2020", "", Importance.Pilny, new ObservableCollection<Step>
                     {new Step("Chuj",false), 
                     new Step("Drugi",false),
                     new Step("Trzeci",false)
                     }),
-                    new Task(Category.Inne, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+                    new Task(Category.Inne, false, "", "7.10.2020", Importance.Wazny, new ObservableCollection<Step>
                     {new Step("Pierwszy",false),
                     new Step("Drugi",false),
                     new Step("Trzeci",false)
@@ -298,6 +355,6 @@ namespace ToDoListProject
 
         }
 
-
+        
     }
 }
