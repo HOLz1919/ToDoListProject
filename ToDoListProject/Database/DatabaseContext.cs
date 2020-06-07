@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Collections.ObjectModel;
+using ToDoListProject.Models;
 
 namespace ToDoListProject.Database
 {
@@ -14,47 +15,47 @@ namespace ToDoListProject.Database
         {
         }
 
-        public DbSet<TaskDB> Tasks { get; set; }
-        public DbSet<StepDB> Steps { get; set; }
-        public DbSet<SubStepDB> SubSteps { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Step> Steps { get; set; }
+        public DbSet<SubStep> SubSteps { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TaskDB>().ToTable("Tbl_Tasks");
-            modelBuilder.Entity<StepDB>().ToTable("Tbl_Steps");
-            modelBuilder.Entity<SubStepDB>().ToTable("Tbl_SubSteps");
+            modelBuilder.Entity<Task>().ToTable("Tbl_Tasks");
+            modelBuilder.Entity<Step>().ToTable("Tbl_Steps");
+            modelBuilder.Entity<SubStep>().ToTable("Tbl_SubSteps");
 
             base.OnModelCreating(modelBuilder);
         }
 
 
-        public ObservableCollection<TaskDB> GetTaskList()
+        public ObservableCollection<Task> GetTaskList()
         {
-            List<TaskDB> tasks = Tasks.ToList();
-            var oc = new ObservableCollection<TaskDB>(tasks);
+            List<Task> tasks = Tasks.ToList();
+            var oc = new ObservableCollection<Task>(tasks);
             return oc;
         }
 
 
 
-        public ObservableCollection<StepDB> GetStepList()
+        public ObservableCollection<Step> GetStepList()
         {
-            List<StepDB> steps = Steps.ToList();
-            var oc = new ObservableCollection<StepDB>(steps);
+            List<Step> steps = Steps.ToList();
+            var oc = new ObservableCollection<Step>(steps);
             return oc;
         }
 
-        public ObservableCollection<SubStepDB> GetSubStepsListGetStepList()
+        public ObservableCollection<SubStep> GetSubStepsListGetStepList()
         {
-            List<SubStepDB> subSteps = SubSteps.ToList();
-            var oc = new ObservableCollection<SubStepDB>(subSteps);
+            List<SubStep> subSteps = SubSteps.ToList();
+            var oc = new ObservableCollection<SubStep>(subSteps);
             return oc;
         }
 
-        public void AddTask(TaskDB taskDB)
+        public void AddTask(Task task)
         {
-            Tasks.Add(taskDB);
+            Tasks.Add(task);
             SaveChanges();
         }
 
@@ -64,12 +65,12 @@ namespace ToDoListProject.Database
             SaveChanges();
         }
 
-        public void EditTask(TaskDB taskDb)
+        public void EditTask(Task task)
         {
-            TaskDB task = Tasks.FirstOrDefault(m => m.TaskId == taskDb.TaskId);
-            if (task!=null)
+            Task _task = Tasks.FirstOrDefault(m => m.TaskId == task.TaskId);
+            if (_task!=null)
             {
-                task = taskDb;
+                _task = task;
                 SaveChanges();
             }
 

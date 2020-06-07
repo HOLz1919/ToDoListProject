@@ -27,18 +27,16 @@ namespace ToDoListProject
         ObservableCollection<Task> Tasks { get; set; }
         ObservableCollection<Task> tempListCategory { get; set; }
 
+        DatabaseContext db;
+
         public MainWindow()
         {
             InitializeComponent();
+            db = new DatabaseContext();
             InitilizeCollection();
             SelectDefaultItemsInComboBoxes();
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
-            TasksListBox.ItemsSource = Tasks;
-            using (var db = new DatabaseContext())
-            {
-                db.AddTask(new TaskDB());
-            }
-            
+            TasksListBox.ItemsSource = Tasks;      
             
         }
 
@@ -220,55 +218,58 @@ namespace ToDoListProject
         }
         private void InitilizeCollection()
         {
-            if(Tasks == null)
-            {
-                Tasks = new ObservableCollection<Task>
-                {
-                    new Task(Category.Dom, false, "", "", Importance.Pilny, new ObservableCollection<Step>
-                    {new Step("Chuj",false), 
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Inne, false, "", "", Importance.Wazny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false),
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Płatności, false, "", "", Importance.Wazny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false),
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false),
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Zakupy, false, "", "", Importance.Zwykly, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false),
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Zakupy, false, "", "", Importance.Pilny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",false),
-                    new Step("Drugi",false),
-                    new Step("Trzeci",false)
-                    }),
-                    new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
-                    {new Step("Pierwszy",true,new ObservableCollection<SubStep>
-                    {
-                        new SubStep("pierwszy",true),
-                        new SubStep("Drugi",true),
-                        new SubStep("Trzeci",true)
-                    }),
-                    new Step("Drugi",true,new ObservableCollection<SubStep>
-                    {
-                    new SubStep("pierwszy",true),
-                    new SubStep("Drugi",true)
-                    })
-                    })
-                };
-            }
+            //if(Tasks == null)
+            //{
+            //    Tasks = new ObservableCollection<Task>
+            //    {
+            //        new Task(Category.Dom, false, "", "", Importance.Pilny, new ObservableCollection<Step>
+            //        {new Step("Chuj",false), 
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Inne, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",false),
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Płatności, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",false),
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",false),
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Zakupy, false, "", "", Importance.Zwykly, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",false),
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Zakupy, false, "", "", Importance.Pilny, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",false),
+            //        new Step("Drugi",false),
+            //        new Step("Trzeci",false)
+            //        }),
+            //        new Task(Category.Szkoła, false, "", "", Importance.Wazny, new ObservableCollection<Step>
+            //        {new Step("Pierwszy",true,new ObservableCollection<SubStep>
+            //        {
+            //            new SubStep("pierwszy",true),
+            //            new SubStep("Drugi",true),
+            //            new SubStep("Trzeci",true)
+            //        }),
+            //        new Step("Drugi",true,new ObservableCollection<SubStep>
+            //        {
+            //        new SubStep("pierwszy",true),
+            //        new SubStep("Drugi",true)
+            //        })
+            //        })
+            //    };
+            //}
+                Tasks = db.GetTaskList();
+            
+
         }
 
         private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

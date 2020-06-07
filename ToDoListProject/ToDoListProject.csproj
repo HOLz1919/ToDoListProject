@@ -71,9 +71,6 @@
       <DependentUpon>AddTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\DatabaseContext.cs" />
-    <Compile Include="Database\StepDB.cs" />
-    <Compile Include="Database\SubStepDB.cs" />
-    <Compile Include="Database\TaskDB.cs" />
     <Compile Include="EditTask.xaml.cs">
       <DependentUpon>EditTask.xaml</DependentUpon>
     </Compile>
