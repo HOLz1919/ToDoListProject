@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,6 +10,7 @@ namespace ToDoListProject.Database
 {
     public class TaskDB
     {
+        [Key]
         public int TaskId { get; set; }
 
         public Category Category { get; set; }

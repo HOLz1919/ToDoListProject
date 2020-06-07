@@ -10,6 +10,10 @@ namespace ToDoListProject.Database
 {
     public class DatabaseContext : DbContext
     {
+        public DatabaseContext() : base("TaskDatabase")
+        {
+        }
+
         public DbSet<TaskDB> Tasks { get; set; }
         public DbSet<StepDB> Steps { get; set; }
         public DbSet<SubStepDB> SubSteps { get; set; }

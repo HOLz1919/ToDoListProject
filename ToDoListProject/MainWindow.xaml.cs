@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ToDoListProject.Models;
+using ToDoListProject.Database;
 
 namespace ToDoListProject
 {
@@ -33,6 +34,11 @@ namespace ToDoListProject
             SelectDefaultItemsInComboBoxes();
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
             TasksListBox.ItemsSource = Tasks;
+            using (var db = new DatabaseContext())
+            {
+                db.AddTask(new TaskDB());
+            }
+            
             
         }
 
