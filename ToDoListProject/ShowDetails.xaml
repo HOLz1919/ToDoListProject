@@ -47,27 +47,27 @@
                                 <RowDefinition Height="0.2*"></RowDefinition>
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
-                            <CheckBox  VerticalAlignment="Center" IsChecked="{Binding IsFinishedStep,UpdateSourceTrigger=PropertyChanged}" Click="CheckBox_Checked"></CheckBox>
+                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsFinishedStep,UpdateSourceTrigger=PropertyChanged}" Click="CheckBox_Checked"></CheckBox>
                             <Label  VerticalAlignment="Center" Grid.Column="1" Content="{Binding MainStep,UpdateSourceTrigger=PropertyChanged}" Width="100"></Label>
                             <ListBox Grid.Row="1" Grid.Column="1" Margin="2 0 0 2" ItemsSource="{Binding SubSteps}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                                            <ColumnDefinition Width="0.8*"></ColumnDefinition>
+                                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                                <ColumnDefinition Width="0.8*"></ColumnDefinition>
                                             </Grid.ColumnDefinitions>
-                                            <CheckBox  VerticalAlignment="Center" IsChecked="{Binding IsFinishedSubStep,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
+                                            <CheckBox VerticalAlignment="Center" IsChecked="{Binding IsFinishedSubStep,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
                                             <Label  VerticalAlignment="Center" Grid.Column="1" Content="{Binding Name,UpdateSourceTrigger=PropertyChanged}"></Label>
                                         </Grid>
-                                        
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>
                         </Grid>
-                        
+
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+
             </ListBox>
         </Grid>
 
@@ -76,12 +76,23 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Button Margin="10" Background="#efe4b0" Content="Zakończ zadanie" FontSize="15" FontWeight="Bold">
+            <Button x:Name="EndTaskButton" Margin="10" Background="#efe4b0" FontSize="15" FontWeight="Bold" Click="EndTaskButton_Click">
                 <Button.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Content" Value="Zakończ zadanie"></Setter>
+                        <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsFinishedTask}" Value="True">
+                            <Setter Property="Content" Value="Zakończone"/>
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                    </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
             <Button Grid.Column="1" x:Name="EditButton" Margin="10" Background="#efe4b0" Content="Edytuj" FontSize="15" FontWeight="Bold" Click="EditButton_Click">
                 <Button.Resources>
@@ -89,6 +100,15 @@
                         <Setter Property="CornerRadius" Value="5"/>
                     </Style>
                 </Button.Resources>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsFinishedTask}" Value="True">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
             
         </Grid>

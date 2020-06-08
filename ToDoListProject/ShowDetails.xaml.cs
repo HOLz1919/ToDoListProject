@@ -50,5 +50,11 @@ namespace ToDoListProject
             editTask.DataContext = this.DataContext;
             editTask.ShowDialog();
         }
+
+        private void EndTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Task task =(Task) DataContext;
+            task.IsFinishedTask = true;
+        }
     }
 }

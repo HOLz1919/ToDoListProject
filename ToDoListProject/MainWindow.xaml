@@ -159,7 +159,7 @@
                                 </Grid>
 
                                 <Grid Grid.Row="2">
-                                    <Button Margin="5 0" Background="#efe4b0" Content="Zakończ zadanie" FontWeight="Bold">
+                                    <Button x:Name="EndTaskButton" Margin="5 0" Background="#efe4b0" Content="Zakończ zadanie" FontWeight="Bold" Click="EndTaskButton_Click">
                                         <Button.Resources>
                                             <Style TargetType="Border">
                                                 <Setter Property="CornerRadius" Value="5"/>
@@ -178,8 +178,14 @@
                             </DataTrigger>
                             <DataTrigger Binding="{Binding Importance}" Value="Zwykly">
                                 <Setter TargetName="GridItem" Property="Background" Value="white"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding IsFinishedTask}" Value="true">
+                                <Setter TargetName="EndTaskButton" Property="Content" Value="Zakończone"/>
+                                <Setter TargetName="GridItem" Property="Background" Value="#DCDCDC"/>
+                                <Setter TargetName="GridItem" Property="IsEnabled" Value="False"/>
+                                <Setter TargetName="EndTaskButton" Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
                 <ListBox.ItemContainerStyle>

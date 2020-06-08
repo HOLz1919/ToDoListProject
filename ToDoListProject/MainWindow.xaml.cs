@@ -207,7 +207,13 @@ namespace ToDoListProject
             }
 
         }
-
+        private void EndTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int index = TasksListBox.Items.IndexOf(button.DataContext);
+            Task selected = (Task)TasksListBox.Items[index];
+            selected.IsFinishedTask = true;
+        }
 
 
         // --------------------------- INITIALIZE --------------------------------------------------
@@ -361,6 +367,6 @@ namespace ToDoListProject
 
         }
 
-        
+
     }
 }
