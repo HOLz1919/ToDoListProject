@@ -48,11 +48,6 @@ namespace ToDoListProject
             DialogResult = true;
         }
 
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            DialogResult = false;
-        }
-
         private void AddStep_Click(object sender, RoutedEventArgs e)
         {
             Steps.Add(new Step("", false));

@@ -176,9 +176,11 @@ namespace ToDoListProject
             ShowDetails details = new ShowDetails(selected.ListOfSteps);
             details.Owner = this;
             details.DataContext = selected;
-            details.Show();
+            if(details.ShowDialog() == true)
+            {
+                TasksListBox.Items.Refresh();
+            }
             
-
         }
 
         private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
