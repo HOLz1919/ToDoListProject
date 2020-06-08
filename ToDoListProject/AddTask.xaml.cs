@@ -30,7 +30,7 @@ namespace ToDoListProject
             StepsListBox.ItemsSource = Steps;
             CreationDate.Content = DateTime.Now.ToString("dd.MM.yyyy");
             DatePicker.BlackoutDates.AddDatesInPast();
-            date = null; 
+            date = ""; 
             CategoryComboBox.ItemsSource = Enum.GetValues(typeof(Category));
         }
 
