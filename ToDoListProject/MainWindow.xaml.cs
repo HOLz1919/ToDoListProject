@@ -178,6 +178,7 @@ namespace ToDoListProject
             details.DataContext = selected;
             if(details.ShowDialog() == true)
             {
+                db.EditTask((Task)details.DataContext);
                 TasksListBox.Items.Refresh();
             }
             
