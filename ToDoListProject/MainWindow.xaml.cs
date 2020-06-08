@@ -253,11 +253,21 @@ namespace ToDoListProject
 
         private void DeleteTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
-            int index = TasksListBox.Items.IndexOf(button.DataContext);
-            Task selected = (Task)TasksListBox.Items[index];
-            Tasks.Remove(selected);
-            db.RemoveTask(selected.TaskId);
+            MessageBoxResult result = MessageBox.Show("Czy na pewno chcesz usunąć zadanie?", "", MessageBoxButton.YesNo);
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    Button button = sender as Button;
+                    int index = TasksListBox.Items.IndexOf(button.DataContext);
+                    Task selected = (Task)TasksListBox.Items[index];
+                    Tasks.Remove(selected);
+                    db.RemoveTask(selected.TaskId);
+                    break;
+
+                case MessageBoxResult.No:
+                    break;
+            }
+            
         }
 
         // --------------------------- INITIALIZE --------------------------------------------------
