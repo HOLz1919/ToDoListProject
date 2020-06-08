@@ -55,11 +55,18 @@ namespace ToDoListProject
         {
             Task task =(Task) DataContext;
             task.IsFinishedTask = true;
+            StepsListBox.IsEnabled = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             DialogResult = true;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Task task = (Task)DataContext;
+            if (task.IsFinishedTask) StepsListBox.IsEnabled = false;
         }
     }
 }
