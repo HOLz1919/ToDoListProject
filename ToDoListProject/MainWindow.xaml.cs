@@ -216,8 +216,49 @@ namespace ToDoListProject
             int index = TasksListBox.Items.IndexOf(button.DataContext);
             Task selected = (Task)TasksListBox.Items[index];
             selected.IsFinishedTask = true;
+            db.EditTask(selected);
+        }
+        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string selectedCategory = CategoryComboBox.SelectedItem.ToString();
+
+            //Pierwszy if potrzebny by uruchomić program bez błędu
+            if (TasksListBox.ItemContainerGenerator.Status != 0)
+            {
+                if (selectedCategory.Equals(Category.Wszystkie.ToString()))
+                {
+                    for (int i = 0; i < Tasks.Count; i++)
+                    {
+                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < Tasks.Count; i++)
+                    {
+                        if (Tasks[i].Category.ToString().Equals(selectedCategory))
+                        {
+                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
+                        }
+                        else
+                        {
+                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Collapsed;
+                        }
+                    }
+   
+                }
+            }
+
         }
 
+        private void DeleteTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            int index = TasksListBox.Items.IndexOf(button.DataContext);
+            Task selected = (Task)TasksListBox.Items[index];
+            Tasks.Remove(selected);
+            db.RemoveTask(selected.TaskId);
+        }
 
         // --------------------------- INITIALIZE --------------------------------------------------
         // --------------------------------------------------------------------------------------------
@@ -337,39 +378,6 @@ namespace ToDoListProject
             Tasks = db.GetTaskList();
         }
 
-        private void CategoryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            string selectedCategory = CategoryComboBox.SelectedItem.ToString();
-
-            //Pierwszy if potrzebny by uruchomić program bez błędu
-            if (TasksListBox.ItemContainerGenerator.Status != 0)
-            {
-                if (selectedCategory.Equals(Category.Wszystkie.ToString()))
-                {
-                    for (int i = 0; i < Tasks.Count; i++)
-                    {
-                        (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < Tasks.Count; i++)
-                    {
-                        if (Tasks[i].Category.ToString().Equals(selectedCategory))
-                        {
-                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Visible;
-                        }
-                        else
-                        {
-                            (TasksListBox.ItemContainerGenerator.ContainerFromIndex(i) as ListBoxItem).Visibility = Visibility.Collapsed;
-                        }
-                    }
-   
-                }
-            }
-
-        }
-
-
+       
     }
 }
