@@ -118,11 +118,11 @@ namespace ToDoListProject
             string date;
             if (DayCheckBox.IsChecked == true)
             {
-                date = DayComboBox.SelectedItem.ToString() + "." + (MonthComboBox.SelectedIndex + 1).ToString() + "." + YearComboBox.SelectedItem.ToString();
+                date = DayComboBox.SelectedItem.ToString() + "." + (MonthComboBox.SelectedIndex + 1).ToString("D2") + "." + YearComboBox.SelectedItem.ToString();
             }
             else if(MonthCheckBox.IsChecked == true)
             {
-                date = (MonthComboBox.SelectedIndex + 1).ToString() + "." + YearComboBox.SelectedItem.ToString();
+                date = (MonthComboBox.SelectedIndex + 1).ToString("D2") + "." + YearComboBox.SelectedItem.ToString();
             }
             else if (YearCheckBox.IsChecked == true)
             {
@@ -235,7 +235,7 @@ namespace ToDoListProject
             List<string> days = new List<string>();
             for(int i = 1; i < 32; i++)
             {
-                days.Add(i.ToString());
+                days.Add(i.ToString("D2"));
             }
 
             return days;
